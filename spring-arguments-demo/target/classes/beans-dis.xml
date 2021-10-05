@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<!-- bean definitions here -->
+	<bean id="myorg" class="io.mtech.spring.app.domain.Organization">
+		<!-- Passing value as index -->
+		<!-- <constructor-arg value="MTECH" index="0" ></constructor-arg> <constructor-arg 
+			value="2020" index="1"></constructor-arg> -->
+		<!-- Passing value as variable name -->
+		<constructor-arg value="MTECH" name="companyName"></constructor-arg>
+		<constructor-arg value="2020"
+			name="yearOfIncorporation"></constructor-arg>
+
+		<!-- Setter Argument -->
+		<property name="postalCode" value="1217"></property>
+		<property name="employeeCount" value="1000"></property>
+		<property name="slogan"
+			value="Work  hard, have fun, make history"></property>
+		<!-- Setter Dependency Injection -->
+		<property name="businessService" ref="ecommerceService"></property>
+	</bean>
+	<!-- Setter Dependency Injection -->
+	<bean id="cloudService"
+		class="io.mtech.spring.app.serviceImpl.CloudServiceImpl"></bean>
+	<bean id="ecommerceService"
+		class="io.mtech.spring.app.serviceImpl.EcommerceServiceImpl"></bean>
+
+</beans>
