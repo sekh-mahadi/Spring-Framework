@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<!-- bean definitions here -->
+	<bean id="myorg" class="io.mtech.spring.app.domain.Organization">
+		<!-- Passing value as index -->
+		<constructor-arg value="MTECH" name="companyName"></constructor-arg>
+		<constructor-arg value="2020"
+			name="yearOfIncorporation"></constructor-arg>
+
+		<!-- Setter Argument -->
+		<property name="postalCode" value="1217"></property>
+		<property name="employeeCount" value="1000"></property>
+		<property name="slogan"
+			value="To organize the worlds information and make it universally accessible and useful"></property>
+		<!-- Setter Dependency Injection -->
+		<property name="businessService" ref="ecommerceService"></property>
+	</bean>
+	<!-- Setter Dependency Injection -->
+	<bean id="cloudService"
+		class="io.mtech.spring.app.serviceImpl.CloudServiceImpl"></bean>
+	<bean id="ecommerceService"
+		class="io.mtech.spring.app.serviceImpl.EcommerceServiceImpl"></bean>
+	<bean id="refferal"
+		class="io.mtech.spring.app.serviceImpl.RefferalRecruitmentServiceImpl"></bean>
+	<bean id="agency"
+		class="io.mtech.spring.app.serviceImpl.AgencyRecruitmentServiceImpl"></bean>
+	
+	<bean id="myhrdept"
+		class="io.mtech.spring.app.service.HumanResourceDept">
+		<constructor-arg name="recruitmentService"
+			ref="refferal"></constructor-arg>
+		<constructor-arg name="organization" ref="myorg"></constructor-arg>
+		<property name="deptName" value="Human Resource Department."></property>
+	</bean>
+
+</beans>
