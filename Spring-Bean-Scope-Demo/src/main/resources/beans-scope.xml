@@ -30,5 +30,4 @@
 		class="io.mtech.spring.app.serviceImpl.CloudServiceImpl"></bean>
 	<bean id="ecommerceService"
 		class="io.mtech.spring.app.serviceImpl.EcommerceServiceImpl"></bean>
-
 </beans>
