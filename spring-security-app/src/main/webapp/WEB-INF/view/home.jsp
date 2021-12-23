@@ -7,7 +7,7 @@
 <title>MTech Company Home Page</title>
 </head>
 <body>
-	<h2>MTech Company Home Page</h2>
+	<h2>MTech Company Home Page--Yoohoo!!!</h2>
 	<hr>
 	Welcome to the MTech Company Home Page!
 </body>

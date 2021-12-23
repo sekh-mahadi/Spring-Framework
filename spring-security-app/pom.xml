@@ -3,16 +3,17 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<groupId>com.luv2code</groupId>
-	<artifactId>spring-security-demo</artifactId>
+	<groupId>io.mtech</groupId>
+	<artifactId>spring-security-app</artifactId>
 	<version>1.0</version>
 	<packaging>war</packaging>
 
-	<name>spring-security-demo</name>
+	<name>spring-security-app</name>
 
 	<properties>
 		<springframework.version>5.0.2.RELEASE</springframework.version>
 		<springsecurity.version>5.0.0.RELEASE</springsecurity.version>
+		<junit.jupiter.version>5.6.2</junit.jupiter.version>
 		<maven.compiler.source>1.8</maven.compiler.source>
 		<maven.compiler.target>1.8</maven.compiler.target>
 	</properties>
@@ -25,7 +26,7 @@
 			<artifactId>spring-webmvc</artifactId>
 			<version>${springframework.version}</version>
 		</dependency>
-		
+
 		<!-- Spring security -->
 		<dependency>
 			<groupId>org.springframework.security</groupId>
@@ -57,9 +58,15 @@
 		</dependency>
 
 		<dependency>
-			<groupId>junit</groupId>
-			<artifactId>junit</artifactId>
-			<version>3.8.1</version>
+			<groupId>org.junit.jupiter</groupId>
+			<artifactId>junit-jupiter-engine</artifactId>
+			<version>${junit.jupiter.version}</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.junit.jupiter</groupId>
+			<artifactId>junit-jupiter</artifactId>
+			<version>${junit.jupiter.version}</version>
 			<scope>test</scope>
 		</dependency>
 
@@ -67,7 +74,7 @@
 
 	<!-- TO DO: Add support for Maven WAR Plugin -->
 	<build>
-		<finalName>spring-security-demo</finalName>
+		<finalName>spring-security-app</finalName>
 		<pluginManagement>
 			<plugins>
 				<plugin>
