@@ -31,6 +31,7 @@ http.authorizeRequests()
 .and()
 .formLogin()
 .loginPage("/loginPage")
+.loginPage("/fancyLogin")
 .loginProcessingUrl("/authenticatedTheUser")
 .permitAll();
 
