@@ -39,7 +39,9 @@
 				<div style="padding-top: 30px" class="panel-body">
 
 					<!-- Login Form -->
-					<form:form
+					<!-- If we use spring form then we don't need to add tokens manually  -->
+					<!--form:form  -->
+					<form
 						action="${pageContext.request.contextPath}/authenticatedTheUser"
 						method="POST" class="form-horizontal">
 
@@ -84,9 +86,12 @@
 								<button type="submit" class="btn btn-success">Login</button>
 							</div>
 						</div>
-					</form:form>
+						<!-- tokens adding manually -->
+						<input type="hidden" name="${_csrf.parameterName}"
+							value="${_csrf.token}">
+					</form>
+					<!-- form:form -->
 				</div>
-
 			</div>
 
 		</div>
