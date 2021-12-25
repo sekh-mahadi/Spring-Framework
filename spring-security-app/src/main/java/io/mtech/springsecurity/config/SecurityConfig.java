@@ -30,9 +30,12 @@ http.authorizeRequests()
 .anyRequest().authenticated()
 .and()
 .formLogin()
-.loginPage("/loginPage")
-.loginPage("/fancyLogin")
+//.loginPage("/loginPage") //normal login page
+.loginPage("/fancyLogin") //Bootstrap Login form
 .loginProcessingUrl("/authenticatedTheUser")
+.permitAll()
+.and()
+.logout()
 .permitAll();
 
 	}
