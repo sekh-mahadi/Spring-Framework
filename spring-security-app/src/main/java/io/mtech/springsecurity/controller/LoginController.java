@@ -20,5 +20,11 @@ public class LoginController {
 	public String loginUsingBootstrap() {
 		return "fancyLogin";
 	}
+	
+	// add a request for /access-denied
+	@RequestMapping(value = "/access-denied", method = RequestMethod.GET)
+	public String showAccessDenied() {
+		return "access-denied";
+	}
 
 }
