@@ -8,7 +8,7 @@ import io.mtech.hibernate.model.Instructor;
 import io.mtech.hibernate.model.InstructorDetail;
 import io.mtech.hibernate.model.Student;
 
-public class GetInstructorDetails {
+public class DeleteInstructorDetailsDemo {
 
 	public static void main(String[] args) {
 		// Session Factory
@@ -25,7 +25,7 @@ public class GetInstructorDetails {
 			session.beginTransaction();
 
 			//get the primary key
-			int theId = 4;
+			int theId = 8;
 			InstructorDetail tempInstructorDetail = session.get(InstructorDetail.class, theId);
 			
 			System.out.println("tempInstructorDetail: "+tempInstructorDetail);
@@ -33,10 +33,6 @@ public class GetInstructorDetails {
 			//print associated instructor
 			System.out.println("The associated instructor: "+tempInstructorDetail.getInstructor());
 			
-			
-			//now delete instructor details
-			System.out.println("Deleting InstructorDetail: "+tempInstructorDetail);
-			session.remove(tempInstructorDetail);
 			// commit
 			session.getTransaction().commit();
 			System.out.println("Done!");
