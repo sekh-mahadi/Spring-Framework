@@ -1,10 +1,12 @@
 package io.mtech.hibernate.model;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -18,10 +20,14 @@ public class InstructorDetail {
 
 	@Column(name = "youtube_channel")
 	private String youtubeChannel;
-	
+
 	@Column(name = "hobby")
 	private String hobby;
-	
+
+	// add a new field for instructor(also getters/setters)
+	@OneToOne(mappedBy = "instructorDetail", cascade = CascadeType.ALL)
+	private Instructor instructor;
+
 	public InstructorDetail() {
 	}
 
@@ -54,10 +60,17 @@ public class InstructorDetail {
 		this.hobby = hobby;
 	}
 
+	public Instructor getInstructor() {
+		return this.instructor;
+	}
+
+	public void setInstructor(Instructor instructor) {
+		this.instructor = instructor;
+	}
+
 	@Override
 	public String toString() {
-		return "InstructorDetails [id=" + this.id + ", youtubeChannel="
+		return "InstructorDetail [id=" + this.id + ", youtubeChannel="
 		        + this.youtubeChannel + ", hobby=" + this.hobby + "]";
 	}
-	
 }
