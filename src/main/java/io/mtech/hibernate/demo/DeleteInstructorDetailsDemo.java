@@ -20,23 +20,28 @@ public class DeleteInstructorDetailsDemo {
 		// create session
 		Session session = sessionFactory.getCurrentSession();
 		try {
-			
 			// Start transaction
 			session.beginTransaction();
 
-			//get the primary key
-			int theId = 8;
+			// get the primary key
+			int theId = 5;
 			InstructorDetail tempInstructorDetail = session.get(InstructorDetail.class, theId);
-			
-			System.out.println("tempInstructorDetail: "+tempInstructorDetail);
-			
-			//print associated instructor
-			System.out.println("The associated instructor: "+tempInstructorDetail.getInstructor());
-			
+
+			System.out.println("tempInstructorDetail: " + tempInstructorDetail);
+
+			// print associated instructor
+			System.out.println("The associated instructor: "
+			        + tempInstructorDetail.getInstructor());
+
+			// now delete instructor details
+			System.out.println("Deleting InstructorDetail: "
+			        + tempInstructorDetail);
+			tempInstructorDetail.getInstructor().setInstructorDetail(null);
+			session.remove(tempInstructorDetail);
 			// commit
 			session.getTransaction().commit();
 			System.out.println("Done!");
-		}catch (Exception exc) {
+		} catch (Exception exc) {
 			exc.printStackTrace();
 		}  finally {
 			//Handle connection leak issue

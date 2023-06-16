@@ -25,7 +25,8 @@ public class InstructorDetail {
 	private String hobby;
 
 	// add a new field for instructor(also getters/setters)
-	@OneToOne(mappedBy = "instructorDetail", cascade = CascadeType.ALL)
+	@OneToOne(mappedBy = "instructorDetail", cascade = {CascadeType.DETACH,
+	        CascadeType.PERSIST, CascadeType.REFRESH, CascadeType.MERGE})
 	private Instructor instructor;
 
 	public InstructorDetail() {
