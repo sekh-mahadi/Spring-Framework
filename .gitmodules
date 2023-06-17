@@ -1,0 +1,3 @@
+[submodule "HB-Relationships"]
+	path = HB-Relationships
+	url = https://github.com/sekh-mahadi/Spring-Framework.git
