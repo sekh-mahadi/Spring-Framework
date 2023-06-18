@@ -7,9 +7,10 @@ import org.hibernate.cfg.Configuration;
 import io.mtech.hibernate.model.Course;
 import io.mtech.hibernate.model.Instructor;
 import io.mtech.hibernate.model.InstructorDetail;
+import io.mtech.hibernate.model.Review;
 import io.mtech.hibernate.model.Student;
 
-public class FetchJoinHQLDemo {
+public class CreateCourseAndStudentDemo {
 
 	public static void main(String[] args) {
 		// Session Factory
@@ -18,21 +19,28 @@ public class FetchJoinHQLDemo {
 				.addAnnotatedClass(Instructor.class)
 				.addAnnotatedClass(InstructorDetail.class)
 				.addAnnotatedClass(Course.class)
+				.addAnnotatedClass(Review.class)
 				.buildSessionFactory();
 		// create session
 		Session session = sessionFactory.getCurrentSession();
 		try {
 			// Start transaction
 			session.beginTransaction();
-			// get the instructor from db
-			int theId = 1;
-			Instructor tempInstructor = session.get(Instructor.class, theId);
+			// Create a course
 
-			System.out.println("Mtech Instructor: "+tempInstructor);
-			
-			//get course for the instructor
-			System.out.println("Mtech: Courses: "+tempInstructor.getCourses());
-			
+			Course tempCourse = new Course("Social Scince -SS101");
+
+			// add some reviews
+			tempCourse.addReview(new Review("Great course....Loved It"));
+			tempCourse.addReview(new Review("COol course....job well done."));
+			tempCourse.addReview(new Review("what a dump course, You are an idiot."));
+
+			// save the course ...and leverage the cascade all
+			System.out.println("Saving the course....");
+			System.out.println(tempCourse);
+			System.out.println(tempCourse.getReviews());
+
+			session.save(tempCourse);
 			// commit
 			session.getTransaction().commit();
 			System.out.println("Mtech: Done!");

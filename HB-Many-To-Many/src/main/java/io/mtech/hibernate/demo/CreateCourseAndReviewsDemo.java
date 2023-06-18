@@ -20,6 +20,7 @@ public class CreateCourseAndReviewsDemo {
 				.addAnnotatedClass(InstructorDetail.class)
 				.addAnnotatedClass(Course.class)
 				.addAnnotatedClass(Review.class)
+				.addAnnotatedClass(Student.class)
 				.buildSessionFactory();
 		// create session
 		Session session = sessionFactory.getCurrentSession();
@@ -28,19 +29,26 @@ public class CreateCourseAndReviewsDemo {
 			session.beginTransaction();
 			// Create a course
 
-			Course tempCourse = new Course("Social Scince -SS101");
-
-			// add some reviews
-			tempCourse.addReview(new Review("Great course....Loved It"));
-			tempCourse.addReview(new Review("COol course....job well done."));
-			tempCourse.addReview(new Review("what a dump course, You are an idiot."));
+			Course tempCourse = new Course("Linear Algebra -LA-101");
 
 			// save the course ...and leverage the cascade all
 			System.out.println("Saving the course....");
 			System.out.println(tempCourse);
-			System.out.println(tempCourse.getReviews());
-
 			session.save(tempCourse);
+			
+			//create the students
+			Student tempStudent1 = new Student("Sekh", "Mahadi", "sekh@mtech.com");
+			Student tempStudent2 = new Student("Shekh", "Rupon", "rupon@mtech.com");
+
+			//Add students to the courset
+			tempCourse.addStudent(tempStudent1);
+			tempCourse.addStudent(tempStudent2);
+			
+			//save the students
+			System.out.println("Saving the students: ");
+			session.persist(tempStudent1);
+			session.persist(tempStudent2);
+			System.out.println("Saved Students: "+tempCourse.getStudents() );
 			// commit
 			session.getTransaction().commit();
 			System.out.println("Mtech: Done!");
