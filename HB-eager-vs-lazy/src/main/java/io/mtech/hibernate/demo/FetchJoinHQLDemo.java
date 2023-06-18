@@ -1,4 +1,4 @@
-package io.mtech.hibernate.demo;
+ package io.mtech.hibernate.demo;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
