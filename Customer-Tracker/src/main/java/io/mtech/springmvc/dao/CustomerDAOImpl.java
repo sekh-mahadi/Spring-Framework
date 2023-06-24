@@ -38,4 +38,13 @@ public class CustomerDAOImpl implements CustomerDAO {
 		currentSession.persist(theCustomer);
 	}
 
+	@Override
+	public Customer getCustomer(int theId) {
+
+		Session currentSession = sessionFactory.getCurrentSession();
+		Customer thCustomer = currentSession.get(Customer.class, theId);
+
+		return thCustomer;
+	}
+
 }
