@@ -2,16 +2,15 @@ package io.mtech.springmvc.dao;
 
 import java.util.List;
 
-import javax.transaction.Transactional;
-
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 
 import io.mtech.springmvc.entity.Customer;
-@Component
+
+@Repository
 public class CustomerDAOImpl implements CustomerDAO {
 
 	// need to inject the session factory
@@ -19,7 +18,6 @@ public class CustomerDAOImpl implements CustomerDAO {
 	private SessionFactory sessionFactory;
 
 	@Override
-	@Transactional
 	public List<Customer> getCustomers() {
 		// get the current hibernate session
 		Session currentSession = sessionFactory.getCurrentSession();
@@ -29,7 +27,7 @@ public class CustomerDAOImpl implements CustomerDAO {
 
 		// execute and get the result list
 		List<Customer> customers = theQuery.getResultList();
-		
+
 		// return the results
 		return customers;
 	}

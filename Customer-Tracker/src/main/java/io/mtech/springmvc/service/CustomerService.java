@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service;
 
 import io.mtech.springmvc.entity.Customer;
 
-@Service
+
 public interface CustomerService {
 
 	List<Customer> getCustomers();
