@@ -40,6 +40,9 @@
 			</table>
 
 		</form:form>
+		<div style=""></div>
+
+		<p><a href="${pageContext.request.contextPath}/customer/list">Back to List</a></p>
 </div>
 
 
