@@ -47,6 +47,7 @@ public class CustomerController {
 
 		return "redirect:/customer/list";
 	}
+
 	@GetMapping("/showFormForUpdate")
 	public String showFormForUpdate(@RequestParam("customerId") int theId, Model theModel) {
 		// Get the Customer from Database
@@ -54,7 +55,17 @@ public class CustomerController {
 
 		// Set Customer as a model attribute
 		theModel.addAttribute("customer", theCustomer);
+
 		// send over to our form
 		return "customer-form";
+	}
+	@GetMapping("/delete")
+	public String deleteCustomer(@RequestParam("customerId") int theId, Model theModel) {
+
+		// Get the customer from database
+		service.deleteCustomer(theId);
+		
+		return "redirect:/customer/list";
+
 	}
 }
