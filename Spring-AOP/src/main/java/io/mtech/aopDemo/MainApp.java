@@ -5,6 +5,7 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 import io.mtech.aop.config.AppConfig;
 import io.mtech.aop.dao.AccountDAO;
 import io.mtech.aop.dao.MembershipDAO;
+import io.mtech.aop.entity.Account;
 
 public class MainApp {
 
@@ -20,7 +21,9 @@ public class MainApp {
 		MembershipDAO theMembershipDAO = ctx.getBean("membershipDAO", MembershipDAO.class);
 
 		// Call the business method
-		theAccountDAO.addAccount();
+		Account myAccount = new Account();
+		theAccountDAO.addAccount(myAccount, true);
+
 		theMembershipDAO.addAccount();
 		theMembershipDAO.addSillyMember();
 
@@ -28,7 +31,7 @@ public class MainApp {
 		System.out.println("\n let's call it again!\n");
 
 		// Call the business method again
-		theAccountDAO.addAccount();
+		// theAccountDAO.addAccount();
 		// close the context
 		ctx.close();
 	}
