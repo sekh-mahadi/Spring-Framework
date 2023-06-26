@@ -25,7 +25,10 @@ public class MainApp {
 		theAccountDAO.addAccount(myAccount, true);
 
 		theMembershipDAO.addAccount();
+		theAccountDAO.doWork();
+
 		theMembershipDAO.addSillyMember();
+		theMembershipDAO.goToSleep();
 
 		// do its again
 		System.out.println("\n let's call it again!\n");
