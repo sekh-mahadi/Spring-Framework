@@ -4,6 +4,7 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 
 import io.mtech.aop.config.AppConfig;
 import io.mtech.aop.dao.AccountDAO;
+import io.mtech.aop.dao.MembershipDAO;
 
 public class MainApp {
 
@@ -15,8 +16,13 @@ public class MainApp {
 		// get the bean from spring container
 		AccountDAO theAccountDAO = ctx.getBean("accountDAO", AccountDAO.class);
 
+		// get the bean from spring container
+		MembershipDAO theMembershipDAO = ctx.getBean("membershipDAO", MembershipDAO.class);
+
 		// Call the business method
 		theAccountDAO.addAccount();
+		theMembershipDAO.addAccount();
+		theMembershipDAO.addSillyMember();
 
 		// do its again
 		System.out.println("\n let's call it again!\n");
