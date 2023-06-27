@@ -17,18 +17,21 @@ public class MainApp {
 		// get the bean from spring container
 		AccountDAO theAccountDAO = ctx.getBean("accountDAO", AccountDAO.class);
 
-		//call the account getter.setter methods
+		// call the account getter.setter methods
 		theAccountDAO.setName("foobar");
 		theAccountDAO.setServiceCode("Silver");
-		
+
 		String name = theAccountDAO.getName();
 		String code = theAccountDAO.getServiceCode();
-		
+
 		// get the bean from spring container
 		MembershipDAO theMembershipDAO = ctx.getBean("membershipDAO", MembershipDAO.class);
 
 		// Call the business method
 		Account myAccount = new Account();
+		myAccount.setName("Madhu");
+		myAccount.setLevel("Platinum");
+
 		theAccountDAO.addAccount(myAccount, true);
 
 		theMembershipDAO.addAccount();
