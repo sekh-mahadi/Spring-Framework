@@ -13,14 +13,33 @@ public class DemoLoggingAspect {
 	private void forDaoPackage() {
 	}
 
+	// create pointcut for getter methods
+	@Pointcut("execution (* io.mtech.aop.dao.*.get*(..))")
+	private void getter() {
+
+	}
+
+	// create pointcut for setter methods
+	@Pointcut("execution( * io.mtech.aop.dao.*.set*(..))")
+	private void setter() {
+
+	}
+
+	// Combine pointcut: include package....exclude getter/setter
+	@Pointcut("forDaoPackage() && !(getter() || setter())")
+	public void forDaoPackageNoGetterSetter() {
+
+	}
+
 	// this is where we add all our related advices for logging
 
-	@Before("forDaoPackage()") // specific package, any // method any class 
+	// @Before("forDaoPackage()") // specific package, any // method any class
+	@Before("forDaoPackageNoGetterSetter()")
 	public void beforeAddAccountAdvice() {
 		System.out.println("\n========Executing @Before advice on addAccount()");
 	}
-	
-	@Before("forDaoPackage()") 
+
+	@Before("forDaoPackageNoGetterSetter()")
 	public void performApiAnalylics() {
 		System.out.println("\n===========>> Performing API Analytics.");
 	}
