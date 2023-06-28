@@ -1,5 +1,8 @@
 package io.mtech.aop.dao;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.stereotype.Component;
 
 import io.mtech.aop.entity.Account;
@@ -35,6 +38,23 @@ public class AccountDAO {
 	public boolean doWork() {
 		System.out.println(getClass() + ": doWork()");
 		return true;
+	}
+
+	// Add a new a method: findsAccounts()
+	public List<Account> findAccounts() {
+		List<Account> myAccounts = new ArrayList<>();
+
+		// create sample Accounts
+		Account temp1 = new Account("Sekh", "Platinum");
+		Account temp2 = new Account("Madhu", "Gold");
+		Account temp3 = new Account("Sohana", "Silver");
+
+		// add to our list
+		myAccounts.add(temp1);
+		myAccounts.add(temp2);
+		myAccounts.add(temp3);
+
+		return myAccounts;
 	}
 
 }
