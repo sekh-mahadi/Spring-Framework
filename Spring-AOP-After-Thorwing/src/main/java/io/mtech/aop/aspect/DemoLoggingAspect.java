@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.AfterReturning;
+import org.aspectj.lang.annotation.AfterThrowing;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.reflect.MethodSignature;
@@ -17,6 +18,19 @@ import io.mtech.aop.entity.Account;
 @Order(0)
 public class DemoLoggingAspect {
 
+	@AfterThrowing(pointcut = "execution(* io.mtech.aop.dao.AccountDAO.findAccounts(..))", throwing = "theExc")
+	public void afterThrowingingFidAccountAdvice(JoinPoint theJoinPoint, Throwable theExc) {
+
+		// print out which method we are advising on
+		String method = theJoinPoint.getSignature().toShortString();
+		System.out.println("\n=====>Executing @AfterReturning on method: "
+		        + method);
+
+		// log the exception
+
+		System.out.println("\n============> The exception Is: " + theExc);
+
+	}
 	// add a new advice for @afterReturning on the findAccounts method
 
 	@AfterReturning(pointcut = "execution(* io.mtech.aop.dao.AccountDAO.findAccounts(..))", returning = "result")

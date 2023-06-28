@@ -33,7 +33,8 @@ public class AccountDAO {
 		this.serviceCode = serviceCode;
 	}
 	public void addAccount(Account theAccount, boolean vipFlag) {
-		System.out.println(getClass() + ": DOING MY DB WORK: ADDING AN ACCOUNT.");
+		System.out.println(getClass()
+		        + ": DOING MY DB WORK: ADDING AN ACCOUNT.");
 	}
 	public boolean doWork() {
 		System.out.println(getClass() + ": doWork()");
@@ -41,8 +42,12 @@ public class AccountDAO {
 	}
 
 	// Add a new a method: findsAccounts()
-	public List<Account> findAccounts() {
+	public List<Account> findAccounts(boolean tripWire) {
 		List<Account> myAccounts = new ArrayList<>();
+
+		if (tripWire) {
+			throw new RuntimeException("No Soup for you.");
+		}
 
 		// create sample Accounts
 		Account temp1 = new Account("Sekh", "Platinum");

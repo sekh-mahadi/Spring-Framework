@@ -9,7 +9,7 @@ import io.mtech.aop.dao.AccountDAO;
 import io.mtech.aop.dao.MembershipDAO;
 import io.mtech.aop.entity.Account;
 
-public class AfterReturningDemo {
+public class AfterThrowingDemoApp {
 
 	public static void main(String[] args) {
 
@@ -20,10 +20,18 @@ public class AfterReturningDemo {
 		AccountDAO theAccountDAO = ctx.getBean("accountDAO", AccountDAO.class);
 
 		// call method to find the accounts
-		List<Account> theAccounts = theAccountDAO.findAccounts();
+		List<Account> theAccounts = null;
+		try {
+			// add a boolean flag to simulate exceptions
+			boolean tripWire = true;
+			theAccounts = theAccountDAO.findAccounts(tripWire);
+
+		} catch (Exception exc) {
+			System.out.println("\n\nMain Program ... Caught Exception: " + exc);
+		}
 
 		// display the accounts
-		System.out.println("\n\nMain Program : AfterRetuningDemo");
+		System.out.println("\n\nMain Program : AfterThrowingDemoApp");
 		System.out.println("------");
 
 		System.out.println(theAccounts);
