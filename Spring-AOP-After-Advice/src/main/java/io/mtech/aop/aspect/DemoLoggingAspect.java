@@ -3,6 +3,7 @@ package io.mtech.aop.aspect;
 import java.util.List;
 
 import org.aspectj.lang.JoinPoint;
+import org.aspectj.lang.annotation.After;
 import org.aspectj.lang.annotation.AfterReturning;
 import org.aspectj.lang.annotation.AfterThrowing;
 import org.aspectj.lang.annotation.Aspect;
@@ -17,6 +18,16 @@ import io.mtech.aop.entity.Account;
 @Component
 @Order(0)
 public class DemoLoggingAspect {
+
+	@After("execution(* io.mtech.aop.dao.AccountDAO.findAccounts(..))")
+	public void afterAdviceFidAccountAdvice(JoinPoint theJoinPoint) {
+
+		// print out which method we are advising on
+		String method = theJoinPoint.getSignature().toShortString();
+		System.out.println("\n=====>Executing @AfterAdvice on method: "
+		        + method);
+
+	}
 
 	@AfterThrowing(pointcut = "execution(* io.mtech.aop.dao.AccountDAO.findAccounts(..))", throwing = "theExc")
 	public void afterThrowingingFidAccountAdvice(JoinPoint theJoinPoint, Throwable theExc) {
