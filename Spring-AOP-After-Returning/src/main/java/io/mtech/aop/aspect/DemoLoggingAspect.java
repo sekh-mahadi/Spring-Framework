@@ -19,8 +19,7 @@ public class DemoLoggingAspect {
 
 	// add a new advice for @afterReturning on the findAccounts method
 
-	@AfterReturning(pointcut = "execution(* io.mtech.aop.dao.AccountDAO.findAccounts(..))", 
-			returning = "result")
+	@AfterReturning(pointcut = "execution(* io.mtech.aop.dao.AccountDAO.findAccounts(..))", returning = "result")
 	public void afterReturingFidAccountAdvice(JoinPoint theJoinPoint, List<Account> result) {
 
 		// print out which method we are advising on
@@ -30,8 +29,25 @@ public class DemoLoggingAspect {
 
 		// print out the results of the method call
 		System.out.println("\n========> result is: " + result);
-		
-		
+
+		// let's post-process the data....let's modify it :-)
+
+		// convert the account names to upperCase
+		convertAccountNamesToUpperCase(result);
+
+		System.out.println("\n========>After modified result is: " + result);
+
+	}
+
+	private void convertAccountNamesToUpperCase(List<Account> result) {
+		// loop through accounts
+		for (Account tempAccount : result) {
+			// get uppercase version of name
+			String theUpperName = tempAccount.getName().toUpperCase();
+			// update the name on the account
+			tempAccount.setName(theUpperName);
+		}
+
 	}
 
 	// this is where we add all our related advices for logging
