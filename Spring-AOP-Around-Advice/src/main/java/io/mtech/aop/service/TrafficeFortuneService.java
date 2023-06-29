@@ -2,6 +2,9 @@ package io.mtech.aop.service;
 
 import java.util.concurrent.TimeUnit;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class TrafficeFortuneService {
 	public String getFortune() {
 		// simulate a delay

@@ -2,10 +2,14 @@ package io.mtech.aop.aspect;
 
 import java.util.List;
 
+import javax.naming.spi.DirStateFactory.Result;
+
 import org.aspectj.lang.JoinPoint;
+import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.After;
 import org.aspectj.lang.annotation.AfterReturning;
 import org.aspectj.lang.annotation.AfterThrowing;
+import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.reflect.MethodSignature;
@@ -18,6 +22,30 @@ import io.mtech.aop.entity.Account;
 @Component
 @Order(0)
 public class DemoLoggingAspect {
+	@Around("execution(* io.mtech.aop.service.*.getFortune(..))")
+	public Object aroundGetFortune(ProceedingJoinPoint theExc) throws Throwable {
+
+		// print out method we are advising on
+		// print out which method we are advising on
+		String method = theExc.getSignature().toShortString();
+		System.out.println("\n=====>Executing @AfterReturning on method: "
+		        + method);
+
+		// get begin timestamp
+		long begin = System.currentTimeMillis();
+
+		// now let's execute the method
+		Object result = theExc.proceed();
+
+		// get end timestamp
+		long end = System.currentTimeMillis();
+		// compute duration and display it
+		long duration = end - begin;
+
+		System.out.println("\n======>>>Duration: " + duration / 1000.0
+		        + " Seconds");
+		return result;
+	}
 
 	@After("execution(* io.mtech.aop.dao.AccountDAO.findAccounts(..))")
 	public void afterAdviceFidAccountAdvice(JoinPoint theJoinPoint) {
