@@ -26,6 +26,18 @@ public class DemoLoggingAspect {
 	private Logger myLogger = Logger.getLogger(getClass().getName());
 
 	@Around("execution(* io.mtech.aop.service.*.getFortune(..))")
+	public Object afterGetFortune(ProceedingJoinPoint theProceedingJoinPoint) throws Throwable {
+		Object result = null;
+		try {
+			result = theProceedingJoinPoint.proceed();
+		} catch (Exception exc) {
+			myLogger.warning(exc.getMessage());
+			result = "Mojor accident! no worries your private AOP helicopter is on the way.";
+		}
+		return result;
+	}
+
+	@Around("execution(* io.mtech.aop.service.*.getFortune(..))")
 	public Object aroundGetFortune(ProceedingJoinPoint theExc) throws Throwable {
 
 		// print out method we are advising on
