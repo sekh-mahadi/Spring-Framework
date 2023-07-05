@@ -80,11 +80,18 @@
 		</dependency>
 
 		<!-- JSTL Dependency -->
-		<dependency>
+		<!--<dependency>
 			<groupId>javax.servlet.jsp.jstl</groupId>
 			<artifactId>javax.servlet.jsp.jstl-api</artifactId>
 			<version>1.2.1</version>
+		</dependency>-->
+
+		<dependency>
+			<groupId>jakarta.servlet.jsp.jstl</groupId>
+			<artifactId>jakarta.servlet.jsp.jstl-api</artifactId>
+			<version>3.0.0</version>
 		</dependency>
+
 		<dependency>
 			<groupId>taglibs</groupId>
 			<artifactId>standard</artifactId>
@@ -96,6 +103,29 @@
 			<groupId>javax.servlet</groupId>
 			<artifactId>javax.servlet-api</artifactId>
 			<version>3.1.0</version>
+			<scope>provided</scope>
+		</dependency>
+
+		<!--		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>javax.servlet-api</artifactId>
+			<version>4.0.1</version>
+			<scope>provided</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>jakarta.servlet</groupId>
+			<artifactId>jakarta.servlet-api</artifactId>
+			<version>6.0.0</version>
+			<scope>provided</scope>
+		</dependency>
+-->
+
+		<!-- JSP Dependency -->
+		<dependency>
+			<groupId>jakarta.servlet.jsp</groupId>
+			<artifactId>jakarta.servlet.jsp-api</artifactId>
+			<version>3.1.1</version>
 			<scope>provided</scope>
 		</dependency>
 
