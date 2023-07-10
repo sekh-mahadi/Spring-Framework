@@ -20,25 +20,24 @@
 	<p>Welcome to mtech company Home Page</p>
 	<hr>
 	<!--Display  user name and role -->
-	<hr>
 	<p>User: <security:authentication property="principal.username" /> <br> <br> Role(s): <security:authentication property="principal.authorities" /> <!--Add a logout button  -->
 		<form:form
 			action="${pageContext.request.contextPath}/logout"
 			method="POST">
 
+			<!-- Add a link to point /leaders ....this is for manager -->
+			<security:authorize access="hasRole('MANAGER')">
+				<p><a href="${pageContext.request.contextPath}/leaders">LeaderShip Meeting</a> (Only for Manager peeps)</p>
+			</security:authorize>
+
+			<!-- Add a link to point /leaders ....this is for manager -->
+			<security:authorize access="hasRole('ADMIN')">
+				<p><a href="${pageContext.request.contextPath}/systems">IT System Meeting</a> (Only for ADMIN peeps)</p>
+			</security:authorize>
+			<hr>
 			<input
 				type="submit"
 				value="Logout" />
-			<hr>
-			<!-- Add a link to point /leaders ....this is for manager -->
-			<p><a href="${pageContext.request.contextPath}/leaders">LeaderShip Meeting</a>
-			(Only for Manager peeps)
-			</p>
-			<hr>
-			<!-- Add a link to point /leaders ....this is for manager -->
-			<p><a href="${pageContext.request.contextPath}/systems">IT System Meeting</a>
-			(Only for ADMIN peeps)
-			</p>
 		</form:form>
 </body>
 </html>
