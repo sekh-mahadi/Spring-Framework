@@ -34,6 +34,11 @@
 			<p><a href="${pageContext.request.contextPath}/leaders">LeaderShip Meeting</a>
 			(Only for Manager peeps)
 			</p>
+			<hr>
+			<!-- Add a link to point /leaders ....this is for manager -->
+			<p><a href="${pageContext.request.contextPath}/systems">IT System Meeting</a>
+			(Only for ADMIN peeps)
+			</p>
 		</form:form>
 </body>
 </html>
